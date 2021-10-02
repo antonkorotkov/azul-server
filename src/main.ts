@@ -1,9 +1,12 @@
-import { Server } from 'socket.io'
+import { Server, Socket } from 'socket.io'
 
-const io = new Server({})
+const io: Server = new Server({cors: {origin: "*"}})
 
-io.on('connection', () => {
-  console.log('test')
+io.on('connection', (socket: Socket) => {
+  console.log('connected', socket.id)
+  socket.on("disconnect", (reason: string) => {
+    console.log('disconnected', reason)
+  });
 })
 
 io.listen(3000)
