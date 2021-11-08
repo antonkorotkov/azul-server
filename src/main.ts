@@ -6,7 +6,7 @@ import { State } from './classes/State'
 
 const d = debug('azul:server')
 const io: Server = new Server({ cors: { origin: '*' } })
-const lobby: Lobby = new Lobby(new State('db/lobby'))
+const lobby: Lobby<State> = new Lobby(new State('db/lobby'))
 
 lobby.clear()
 

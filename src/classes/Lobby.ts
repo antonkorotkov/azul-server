@@ -3,12 +3,12 @@ import debug from 'debug'
 
 const d = debug('azul:lobby')
 
-class Lobby {
-  constructor(private state: Storable<any>) {
+class Lobby<T> {
+  constructor(private state: Storable<T>) {
     this.state.load()
   }
 
-  addWaitingPlayer(name: string): Lobby {
+  addWaitingPlayer(name: string): Lobby<T> {
     d('Player Connected')
     this.state.set('.players[]', name)
     return this

@@ -17,7 +17,7 @@ class State implements Storable<State> {
     return this
   }
 
-  set(key: string, value: any): State {
+  set(key: string, value: string | Record<string, unknown> | []): State {
     this.db.push(key, value)
     return this
   }
