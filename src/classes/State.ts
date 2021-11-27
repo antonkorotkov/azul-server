@@ -17,9 +17,13 @@ class State implements Storable<State> {
     return this
   }
 
-  set(key: string, value: string | Record<string, unknown> | []): State {
+  set<T>(key: string, value: T): State {
     this.db.push(key, value)
     return this
+  }
+
+  get<T>(key: string): T {
+    return this.db.getData(key)
   }
 
   delete(key: string): State {

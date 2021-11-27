@@ -4,6 +4,8 @@ import debug from 'debug'
 const d = debug('azul:lobby')
 
 class Lobby<T> {
+  static eventPrefix = 'lobby'
+
   constructor(private state: Storable<T>) {
     this.state.load()
   }
@@ -12,6 +14,10 @@ class Lobby<T> {
     d('Player Connected')
     this.state.set('.players[]', name)
     return this
+  }
+
+  getWaitingPlayers(): [] {
+    return this.state.get<[]>('.players')
   }
 
   removeWaitingPlayer(name: string): boolean {
